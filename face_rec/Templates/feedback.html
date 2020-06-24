@@ -1,0 +1,39 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<center>
+<form method="post" action="{% url 'feedback' %}">
+    {% csrf_token %}
+    <div class="container">
+    <h1>Feedback</h1>
+    <p>Send your valuable feedback here</p>
+    <hr>
+     <label><b>Select course</b></label><br><br>
+     <select name="select" value="nil">
+         <option value="nil" selected>select</option>
+         {% for i in fd %}
+         <option value={{i}}>{{i}}</option>
+         {% endfor %}
+     </select><br><br>
+
+        <label><b>Please write few words obout the course</b></label><br><br>
+        <textarea name="text_feed" rows="4" cols="50"></textarea> <br>
+    <hr>
+    <button type="submit" class="registerbtn">Submit</button>&nbsp&nbsp&nbsp&nbsp
+    <button type="reset" class="registerbtn">Cancel</button>
+  </div>
+
+</form>
+    <button type="submit" class="registerbtn" onclick="location.href='{% url 'student_home' %}'" name='mybtn2'>Back</button>
+
+</center>
+</body>
+
+</html>

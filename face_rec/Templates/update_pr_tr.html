@@ -1,0 +1,42 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>teacher</title>
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">-->
+
+</head>
+
+<body class= "pic" background="{% static 'education_news2.jpg' %}">
+    <div align="center">
+    <div style="display: block; width: 600px;">
+    <form method="post" action="{% url 'update_pr_tr' %}">
+        {% csrf_token %}
+<br><br>
+    <div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                {{ msg }}
+            {% endfor %}
+        {% endif %}
+    </div><br>
+    FIRST NAME: <br><br><input type="text" value={{bb.First_name}} name="first_name"><br><br>
+    LAST NAME: <br><br><input type="text" value={{bb.Last_name}} name="last_name"><br><br>
+    EMAIL    :<br><br><input type="email" value={{bb.Email}} name="email"><br><br>
+    ADDRESS <br><br><textarea placeholder="Enter address" rows="7" cols="50" name="addr">{{b.Address}}</textarea><br><br>
+    DOB <br><br><input type="date" name="dob" value="{{bb.DOB}}" required><br><br>
+    <select name="gender">
+        <option value="{{b.Gender}}" selected>Select gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select><br><br>
+    PHONE <br><br><input type="tel" name="phone" value="{{bb.Phone}}" minlength="10" maxlength="10" required><br><br>
+    QUALIFICATION <br><br><input type="text" name="qual" width="200" value="{{bb.Qualification}}" required><br><br>
+    <input type="hidden" value={{bb.Password}} name="psw">
+    <button class="registerbtn" type="submit">Update</button>
+    </form>
+        <button type="submit" class="registerbtn" onclick="location.href='{% url 'teacher_home' %}'" name='mybtn2'>Back</button>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+<script src="{% static 'jquery.min.js' %}"></script>
+<body class= "pic" background="{% static 'trt.jpg' %}">
+    <div  class="cen" align="center">
+        <form method="post" action="{% url 'update_pr_st' %}">
+            {% csrf_token %}
+            <br><br>
+            <div style="color:blue;" align="center">
+            {% if messages %}
+                {% for msg in messages %}
+                    {{ msg }}
+                {% endfor %}
+            {% endif %}
+            </div><br>
+                FIRSTNAME <br><br><input type="text" value={{b.First_name}} name="first_name"><br><br>
+                LASTNAME <br><br><input type="text" value={{b.Last_name}} name="last_name"><br><br>
+                EMAIL <br><br><input type="email" value={{b.Email}} name="email"><br><br>
+                ADDRESS <br><br><textarea placeholder="Enter address" rows="7" cols="50" name="addr">{{b.Address}}</textarea><br><br>
+                DOB <br><br><input type="date" name="dob" value="{{b.DOB}}" required><br><br>
+                DOJ of the course <br><br><input type="date" name="d_c" value="{{b.DOJ_course}}" required><br><br>
+                PHONE <br><br><input type="tel" name="phone" value="{{b.Phone}}" minlength="10" maxlength="10" required><br><br>
+                PARENT'S PHONE <br><br><input type="tel" name="p_phone" value="{{b.Parent_phone}}" minlength="10" maxlength="10" required><br><br>
+                <select name="gender">
+                    <option value="{{b.Gender}}" selected>Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select><br><br>
+                <input class="registerbtn" type="submit" value="Update">
+        </form>
+    </div>
+<div align="center">
+	<button type="submit" class="registerbtn" onclick="location.href='{% url 'student_home' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+</html>

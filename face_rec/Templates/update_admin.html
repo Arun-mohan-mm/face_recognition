@@ -1,0 +1,54 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<div align="center">
+<form action="{% url 'bnb' %}" method="post">
+{% csrf_token %}
+     <div style="color:blue;" align="center">
+         {% if messages %}
+            {% for msg in messages %}
+                {{ msg }}
+            {% endfor %}
+         {% endif %}
+     </div><br><br>
+    <label>First name</label><br>
+    <input type="text" value="{{bb1.First_name}}" name="first"><br><br>
+
+    <label>Last name</label><br>
+    <input type="text" value="{{bb1.Last_name}}" name="last"><br><br>
+
+    <label>Email</label><br>
+    <input type="text" value="{{bb1.Email}}" name="em"><br><br>
+
+    <label>Password</label><br>
+    <input type="text" value="{{bb1.Password}}" name="psw"><br><br>
+
+    <label>Address</label><br><br>
+    <textarea placeholder="Enter address" rows="7" cols="50" name="addr">{{bb1.Address}}</textarea><br><br>
+
+    <label>Date of birth</label><br><br>
+    <input type="date" name="dob" value="{{bb1.DOB}}" required><br><br>
+
+    <select name="gender">
+        <option value="{{bb1.Gender}}" selected>Select gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select><br><br>
+
+    <label>Phone</label><br><br>
+    <input type="tel" name="phone" value="{{bb1.Phone}}" minlength="10" maxlength="10" required><br><br>
+
+    <input type="submit" class="registerbtn" value="submit">&nbsp&nbsp&nbsp&nbsp
+    <input type="reset" class="registerbtn" value="cancel">
+</form>
+</div><br>
+<div align="center">
+    <button type="submit" class="registerbtn" onclick="location.href='{% url 'adm_prof' %}'">Back</button>
+</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HOME</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}">
+
+</head>
+<body class= "pic" background="{% static 'home_learn1.jpeg' %}">
+<div class="navbar">
+  <a href="{% url 'home' %}">HOME</a>
+  <a href="{% url 'news' %}">NEWS</a>
+  <a href="{% url 'about' %}">ABOUT</a>
+  <div class="dropdown">
+  <button class="dropbtn">BLOGS<i class="fa fa-caret-down"></i></button>
+      <div class="dropdown-content">
+            <a href="{% url 'add_blog' %}">ADD BLOGS</a>
+            <a href="{% url 'view_blog' %}">VIEW BLOGS</a>
+      </div>
+  </div>
+  <a href="{% url 'contact' %}">CONTACT</a>
+  <a href="{% url 'login' %}">LOGIN</a>
+  <div class="dropdown">
+    <button class="dropbtn">REGISTER<i class="fa fa-caret-down"></i></button>
+
+    <div class="dropdown-content">
+        <a href="{% url 'register_st' %}">Student</a>
+        <a href="{% url 'register_tr' %}">Teacher</a>
+        <a href="{% url 'adminn' %}">Admin</a>
+    </div>
+  </div>
+</div>
+<center>
+<div style="color:yellow">
+    <marquee>EXAM NOTIFICATION: <label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        &nbsp&nbsp</label> {% for m in kk %} {% if m == 'mh' %} <label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        &nbsp&nbsp</label> {% endif %} {% if m != 'mh' %} {{m}} {% endif %}{% endfor %}</marquee>>
+    <!--<h4>One Step Ahead This Season</h4>-->
+</div>
+
+<div class="head">
+    <h1 style="color:white">Face Recognition Based Attendance System</h1>
+    <!--<h4>One Step Ahead This Season</h4>-->
+</div>
+<div style="color:blue;font-size:200%;">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+</center>
+
+
+</body>
+
+</html>

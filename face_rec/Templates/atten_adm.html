@@ -1,0 +1,73 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>student registration</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<center>
+<form method="post" action="{% url 'atten' %}">
+    {% csrf_token %}
+    <div class="container">
+    <h1>Attendance</h1>
+    <div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+    </div>
+    <hr>
+
+     <select name="course">
+         <option value="Nil" selected>Select course</option>
+         {% for s in cou %}
+         <option value="{{s}}">{{s}}</option>
+         {% endfor %}
+     </select><br><br>
+
+      <select name="class">
+          <option value="0" selected>Select class</option>
+          {% for t in cla %}
+          <option value="{{t}}">{{t}}</option>
+          {% endfor %}
+      </select><br><br>
+
+        <select name="sem">
+            <option value="0" selected>Select semester</option>
+            {% for u in sem %}
+           <option value="{{u}}">{{u}}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <h2>Daily attendance</h2>
+        <label>Select date</label><br><br>
+        <input type="date" name="dat"><br><br>
+
+        <h2>Monthly attendance</h2>
+        <label>Select month</label><br><br>
+        <input type="month" name="month"><br><br>
+
+        <h2>Weekly attendance</h2>
+        <label>Select week</label><br><br>
+        <input type="week" name="week"><br><br>
+
+    <hr>
+
+
+    <button type="submit" class="registerbtn">View attendance</button>&nbsp&nbsp&nbsp&nbsp&nbsp
+    <button type="reset" class="registerbtn">Cancel</button>
+  </div>
+
+
+</form>
+ <div>
+     <button type="submit" class="registerbtn" onclick="location.href='{% url 'admin_home' %}'">Back</button>
+ </div>
+</center>
+</body>
+
+</html>

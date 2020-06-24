@@ -1,0 +1,87 @@
+{% load static %}
+<html lang="en">
+<head>
+    <style>
+.tdStyle
+{
+background-repeat:no-repeat;
+background-size:cover;
+}
+label
+{ float: center; width: 10em; margin-right: 1em; }
+
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 5px 5px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 10%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity:1;
+
+}
+</style>
+    <meta charset="UTF-8">
+    <title>Teacher registration</title>
+</head>
+<!--style="background-repeat: no-repeat; background-size: 1300px 700px"-->
+<body class="tdStyle"  background="{% static 'trt.jpg' %}">
+<form method="post" action="{% url 'register_tr' %}">
+{% csrf_token %}
+    <div class="container" align="center">
+        <h1>Teacher registration</h1>
+            <p>Please fill in this form to create an account.</p>
+
+                <div style="color:blue;" align="center">
+                {% if messages %}
+                    {% for msg in messages %}
+                        {{ msg }}
+                    {% endfor %}
+                {% endif %}
+                </div>
+
+                <label for="first_name"><b>First name</b></label><br><br>
+                <input type="text" size="25" placeholder="Enter firstname" name="first_name" required><br><br>
+
+                <label for="last_name"><b>Last name</b></label><br><br>
+                <input type="text" size="25" placeholder="Enter lastname" name="last_name" required><br><br>
+
+                <label for="email"><b>Email</b></label><br><br>
+                <input type="email" size="25" placeholder="Enter email" name="email" required><br><br>
+
+                <label for="psw"><b>Password</b></label><br><br>
+                <input type="password" size="25" placeholder="Enter password" name="psw" required><br><br>
+
+                <label for="addr"><b>Address</b></label><br><br>
+                <textarea placeholder="Enter address" rows="7" cols="50" name="addr"></textarea><br><br>
+
+                <label for="dob"><b>Date of birth</b></label><br><br>
+                <input type="date" name="dob" required><br><br>
+
+                <select name="gender">
+                    <option value="Nil" selected>Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select><br><br>
+
+                <label for="qual"><b>Qualification</b></label><br><br>
+                <input type="text" size="25" placeholder="eg; Msc Maths" name="qual" required><br><br>
+
+                <label for="phone"><b>Phone number</b></label><br><br>
+                <input type="tel" name="phone" minlength="10" maxlength="10" required><br><br>
+
+                <input type="hidden"  name="teacher" value="teacher_blocked">
+            <button type="submit" class="registerbtn">Register</button>&nbsp&nbsp&nbsp&nbsp
+            <button type="reset" class="registerbtn">Cancel</button>
+    </div>
+</form>
+<div align="center">
+	<button type="submit" class="registerbtn" onclick="location.href='{% url 'home' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+</html>

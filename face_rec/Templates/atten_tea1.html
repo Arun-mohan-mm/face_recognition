@@ -1,0 +1,104 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Absentees</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+
+</head>
+
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<center>
+<form method="post" action="{% url 'absent1' %}">
+    {% csrf_token %}
+    <div class="container">
+    <h1>Absentees</h1>
+    <div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+    </div>
+    <hr>
+
+
+     <h2>Student wise absentees</h2>
+     <select name="student">
+         <option value="Nil" selected>Select student</option>
+         {% for i,j,k,m,n in stb %}
+         <option value="{{n}}">Name = {{i}}, Course = {{j}}, Class = {{k}}, Semester = {{m}}</option>
+         {% endfor %}
+     </select><br><br>
+
+     <h2>Course wise absentees</h2>
+
+     <select name="course">
+         <option value="Nil" selected>Select course</option>
+         {% for s in cou %}
+         <option value="{{s}}">{{s}}</option>
+         {% endfor %}
+     </select><br><br>
+
+      <select name="class">
+          <option value="0" selected>Select class</option>
+          {% for t in cla %}
+          <option value="{{t}}">{{t}}</option>
+          {% endfor %}
+      </select><br><br>
+
+        <select name="sem">
+            <option value="0" selected>Select semester</option>
+            {% for u in sem %}
+           <option value="{{u}}">{{u}}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <h2>Daily absentees</h2>
+        <label>Select date</label><br><br>
+        <input type="date" name="dat"><br><br>
+
+        <h2>Monthly absentees</h2>
+        <label>Select month</label><br><br>
+        <input type="month" name="month"><br><br>
+
+        <h2>Weekly absentees</h2>
+        <label>Select week</label><br><br>
+        <input type="week" name="week"><br><br>
+
+         <hr width="300">
+        <h2>Select begin time</h2>
+        <input type="time" name="time1"><br><br>
+
+        <h2>Select end time</h2>
+        <input type="time" name="time2"><br><br>
+        <hr width="300"><br><br>
+        <h3>OR</h3><br><br>
+        <hr width="300">
+        <select name="hhour">
+            <option value="0" selected>Select hour</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select><br><br>
+        <hr width="300">
+
+    <hr>
+
+
+    <button type="submit" class="registerbtn">View absentees</button>&nbsp&nbsp&nbsp&nbsp&nbsp
+    <button type="reset" class="registerbtn">Cancel</button>
+  </div>
+
+
+</form>
+ <div>
+     <button type="submit" class="registerbtn" onclick="location.href='{% url 'teacher_home' %}'">Back</button>
+ </div>
+</center>
+</body>
+
+</html>

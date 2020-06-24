@@ -1,0 +1,27 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Course</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<div align="center">
+<form method="post" action="{% url 'edit_course' ccf.id %}">
+    {% csrf_token %}
+    <h3><b>EDIT COURSE</b></h3><br><br>
+    <label>Department</label><br><br>
+    <input type="text" value="{{ccf.Department}}" name="dep"><br><br>
+    <label>Course</label><br><br>
+    <input type="text" value="{{ccf.Course}}" name="cou"><br><br>
+    <label>Subject</label><br><br>
+    <input type="text" value="{{ccf.Subject}}" name="sub"><br><br>
+    <input type="submit" class="registerbtn" value="Submit">&nbsp&nbsp&nbsp&nbsp
+    <input type="reset" class="registerbtn" value="Cancel">
+</form>
+</div>
+<div align="center">
+	<button type="submit" class="registerbtn" onclick="location.href='{% url 'course' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+</html>

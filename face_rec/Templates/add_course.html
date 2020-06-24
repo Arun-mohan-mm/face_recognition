@@ -1,0 +1,75 @@
+{% load static %}
+<html lang="en">
+<head>
+    <style>
+        .registerbtn {
+                background-color: #4CAF50;
+                color: white;
+                padding: 16px 5px 5px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                width: 10%;
+                opacity: 0.9;
+                       }
+
+        .registerbtn:hover {
+                opacity:1;
+
+                            }
+    </style>
+    <meta charset="UTF-8">
+    <title>ADD COURSE</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'admin.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'studenthome.css' %}">
+</head>
+<body class=" pic" background="{% static 'banner.jpg' %}">
+<div align="center">
+<form method="post" action="{% url 'add_course' %}">
+    {% csrf_token %}
+    <h3>ADD COURSE</h3>
+    <div style="color:blue;">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+    </div>
+    <table>
+        <tr>
+             <td>
+                <label>Department</label>
+            </td>
+            <td>
+                <input type="text" placeholder="Enter department" name="dept" required>
+            </td>
+        </tr>
+        <tr></tr><tr></tr><tr></tr><tr></tr>
+        <tr>
+             <td>
+                <label>Course</label>
+            </td>
+            <td>
+                <input type="text" placeholder="Enter course" name="course" required>
+            </td>
+        </tr>
+        <tr></tr><tr></tr><tr></tr><tr></tr>
+        <tr>
+             <td>
+                <label>Subject</label>
+            </td>
+            <td>
+                <input type="text" placeholder="Enter subject" name="sub" required>
+            </td>
+        </tr>
+        <tr></tr><tr></tr><tr></tr><tr></tr>
+    </table>
+     <input type="submit" class="registerbtn" name="submit" value="Submit" required>&nbsp&nbsp&nbsp&nbsp
+     <input type="reset" class="registerbtn" name="cancel" value="Cancel">
+</form>
+</div>
+<div align="center">
+    <button type="submit" class="registerbtn" onclick="location.href='{% url 'course' %}'">Back</button>
+</div>
+</body>
+</html>

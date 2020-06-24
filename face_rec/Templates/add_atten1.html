@@ -1,0 +1,82 @@
+{% load static %}
+<html lang="en">
+<head>
+    <style>
+        .registerbtn {
+                background-color: #4CAF50;
+                color: white;
+                padding: 16px 5px 5px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                width: 10%;
+                opacity: 0.9;
+                       }
+
+        .registerbtn:hover {
+                opacity:1;
+
+                            }
+    </style>
+    <meta charset="UTF-8">
+    <title>ADD ATTENDANCE</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'admin.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'studenthome.css' %}">
+</head>
+<body class=" pic" background="{% static 'banner.jpg' %}">
+<div align="center">
+<form method="post" action="{% url 'add_atten1' %}">
+    {% csrf_token %}
+    <h3>ADD ATTENDANCE</h3>
+    <div style="color:blue;">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+    </div>
+    <table>
+        <tr>
+             <td>
+                <label>Name</label>
+            </td>
+            <td>
+                <input type="text" placeholder="Enter full name" name="name" required>
+            </td>
+        </tr>
+        <tr></tr><tr></tr><tr></tr><tr></tr>
+        <tr>
+             <td>
+                <label>Email</label>
+            </td>
+            <td>
+                <input type="email" placeholder="Enter email" name="email" required>
+            </td>
+        </tr>
+        <tr></tr><tr></tr><tr></tr><tr></tr>
+        <tr>
+             <td>
+                <label>Date</label>
+            </td>
+            <td>
+                <input type="date" name="date" required>
+            </td>
+            <tr></tr><tr></tr><tr></tr><tr></tr>
+            <td>
+                <label>Time</label>
+            </td>
+            <td>
+                <input type="time" name="time" required>
+            </td>
+        </tr>
+        <tr></tr><tr></tr><tr></tr><tr></tr>
+    </table>
+     <input type="submit" class="registerbtn" name="submit" value="Submit" required>&nbsp&nbsp&nbsp&nbsp
+     <input type="reset" class="registerbtn" name="cancel" value="Cancel">
+</form>
+</div>
+<div align="center">
+    <button type="submit" class="registerbtn" onclick="location.href='{% url 'attention' %}'">Back</button>
+</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% load static %}
+<html lang="en">
+<head>
+    <style>
+.tdStyle
+{
+background-repeat:no-repeat;
+background-size:cover;
+}
+label
+{ float: center; width: 10em; margin-right: 1em; }
+
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 5px 5px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 10%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity:1;
+
+}
+</style>
+    <meta charset="UTF-8">
+    <title>Feedback</title>
+</head>
+<!--style="background-repeat: no-repeat; background-size: 1300px 700px"-->
+<body class="tdStyle"  background="{% static 'trt.jpg' %}">
+<form method="post" action="{% url 'feedbak2' %}">
+{% csrf_token %}
+    <div class="container" align="center">
+                <select name="teac">
+                    <option value="Nil" selected>Select teacher</option>
+                    {% for i in sm %}
+                    <option value="{{i.id}}">{{i.First_name}} {{i.Last_name}}</option>
+                    {% endfor %}
+                </select><br><br>
+            <button type="submit" class="registerbtn">Send</button>&nbsp&nbsp&nbsp&nbsp
+            <button type="reset" class="registerbtn">Cancel</button>
+    </div>
+</form>
+<div align="center">
+	<button type="submit" class="registerbtn" onclick="location.href='{% url 'feedbak' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+</html>

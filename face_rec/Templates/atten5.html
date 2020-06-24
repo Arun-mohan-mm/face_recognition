@@ -1,0 +1,102 @@
+{% load static %}
+
+<html lang="en">
+<head>
+	<style>
+		table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+		}
+		th, td {
+		padding: 15px;
+		}
+	</style>
+    <meta charset="UTF-8">
+    <title>Attendance</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">View attendance</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<table  style="width:100%">
+	<tr>
+		<th>
+			Student name
+		</th>
+		<th>
+			Student email
+		</th>
+        <th>
+			Date
+		</th>
+        <th>
+			Time
+		</th>
+	</tr>
+    {% if m %}
+	{% for i in m %}
+    {% if i.Email in gb %}
+	<tr>
+		<td>
+			{{i.Name}}
+		</td>
+		<td>
+			{{i.Email}}
+		</td>
+		<td>
+			{{i.Date}}
+		</td>
+		<td>
+			{{i.Time}}
+		</td>
+		<td>
+			<button type="submit" onclick="location.href='{% url 'edit_atten1' i.id %}'" name='edit_atten'>Edit</button>
+		</td>
+		<td>
+			<button type="submit" onclick="location.href='{% url 'delete_atten1' i.id %}'" name='del_atten'>Delete</button>
+		</td>
+	</tr>
+    {% endif %}
+	{% endfor %}
+    {% endif %}
+
+    {% if m4 %}
+    {% for i,j,k,d,w in m4 %}
+    {% if j in gb %}
+	<tr>
+		<td>
+			{{i}}
+		</td>
+		<td>
+			{{j}}
+		</td>
+		<td>
+			{{k}}
+		</td>
+		<td>
+			{{d}}
+		</td>
+		<td>
+			<button type="submit" onclick="location.href='{% url 'edit_atten1' w %}'" name='edit_atten'>Edit</button>
+		</td>
+		<td>
+			<button type="submit" onclick="location.href='{% url 'delete_atten1' w %}'" name='del_atten'>Delete</button>
+		</td>
+	</tr>
+    {% endif %}
+	{% endfor %}
+    {% endif %}
+</table><br><br>
+<div align="center">
+	<button type="submit" class="registerbtn" onclick="location.href='{% url 'add_atten1' %}'" name='mybtn2'>Add</button>
+	<button type="submit" class="registerbtn" onclick="location.href='{% url 'admin_home' %}'" name='mybtn2'>Back</button>
+</div>
+
+</body>
+</html>

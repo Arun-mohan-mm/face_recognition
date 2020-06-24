@@ -1,0 +1,29 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}">
+<div align="center">
+<form method="post" action="{% url 'edit_atten1' m.id %}">
+    {% csrf_token %}
+    <h3><b>EDIT ATTENDANCE</b></h3><br><br>
+    <label>Name</label><br><br>
+    <input type="text" value="{{m.Name}}" name="name"><br><br>
+    <label>Email</label><br><br>
+    <input type="email" value="{{m.Email}}" name="email"><br><br>
+    <label>Date</label><br><br>
+    <input type="text" value="{{m.Date}}" name="date"><br><br>
+    <label>Time</label><br><br>
+    <input type="text" value="{{m.Time}}" name="time"><br><br>
+    <input type="submit" class="registerbtn" value="Submit">&nbsp&nbsp&nbsp&nbsp
+    <input type="reset" class="registerbtn" value="Cancel">
+</form>
+</div>
+<div align="center">
+	<button type="submit" class="registerbtn" onclick="location.href='{% url 'atten' %}'" name='mybtn2'>Back</button>
+</div>
+</body>
+</html>

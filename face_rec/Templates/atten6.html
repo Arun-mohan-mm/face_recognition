@@ -1,0 +1,161 @@
+{% load static %}
+
+<html lang="en">
+<head>
+	<style>
+		table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+		}
+		th, td {
+		padding: 15px;
+		}
+	</style>
+    <meta charset="UTF-8">
+    <title>Attendance</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head>
+<body class= "pic" background="{% static 'trt.jpg' %}" >
+<h3 align="center">View attendance</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<table  style="width:100%">
+	<tr>
+		<th>
+			Student name
+		</th>
+		<th>
+			Student email
+		</th>
+        <th>
+			Date
+		</th>
+        <th>
+			Time
+		</th>
+	</tr>
+
+
+	{% if k %}
+	{% for i in k %}
+    {% if i.Email in gb2 %}
+	<tr>
+		<td>
+			{{i.First_name}} {{i.Last_name}}
+		</td>
+		<td>
+			{{i.Email}}
+		</td>
+		<td>
+			{{i.Course}}
+		</td>
+		<td>
+			{{i.Class}}
+		</td>
+		<td>
+			{{i.Semester}}
+		</td>
+		<td>
+			{{dat}}
+		</td>
+	</tr>
+    {% endif %}
+	{% endfor %}
+    {% endif %}
+
+
+    {% if m %}
+	{% for i,j,k,m in m %}
+	<tr>
+		<td>
+			{{i}}
+		</td>
+		<td>
+			{{j}}
+		</td>
+		<td>
+			{{k}}
+		</td>
+		<td>
+			{{m}}
+		</td>
+	</tr>
+	{% endfor %}
+	{% endif %}
+
+
+    {% if m4 %}
+    {% for i,j,k,d,w in m4 %}
+	<tr>
+		<td>
+			{{i}}
+		</td>
+		<td>
+			{{j}}
+		</td>
+		<td>
+			{{k}}
+		</td>
+		<td>
+			{{d}}
+		</td>
+	</tr>
+	{% endfor %}
+    {% endif %}
+
+
+	{% if m5 %}
+    {% for i,j,k,d in m5 %}
+	<tr>
+		<td>
+			{{i}}
+		</td>
+		<td>
+			{{j}}
+		</td>
+		<td>
+			{{k}}
+		</td>
+		<td>
+			{{d}}
+		</td>
+	</tr>
+	{% endfor %}
+    {% endif %}
+</table><br><br>
+
+<div align="center">
+	{% if stm == 'Nil' %}
+
+	{% if perc > 75 %}
+	<label>Attendance percentage: <label style="color:green">{{perc}}</label></label><br><br>
+	{% endif %}
+	{% if perc <= 75 %}
+	<label>Attendance percentage: <label style="color:red">{{perc}}</label></label><br><br>
+	{% endif %}
+
+	{% endif %}
+
+
+
+	{% if stm != 'Nil' %}
+
+	{% if perce > 75 %}
+	<label>Attendance percentage: <label style="color:green">{{perce}}</label></label><br><br>
+	{% endif %}
+	{% if perce <= 75 %}
+	<label>Attendance percentage: <label style="color:red">{{perce}}</label></label><br><br>
+	{% endif %}
+
+	{% endif %}
+
+	<button type="submit" class="registerbtn" onclick="location.href='{% url 'teacher_home' %}'" name='mybtn2'>Back</button>
+</div>
+
+</body>
+</html>
